@@ -1,0 +1,755 @@
+mpiexec -n 10 programpi.exe
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+1
+[ 87  57 ]
+[ 3  25 ]
+[ 93  78 ]
+[ 9  7 ]
+[ 6  112 ]
+[ 37  77 ]
+[ 7  69 ]
+[ 50  43 ]
+[ 49  2 ]
+[ 59  66 ]
+[ 66  82 ]
+[ 96  81 ]
+[ 106  40 ]
+[ 64  0 ]
+[ 15  84 ]
+[ 35  90 ]
+[ 70  79 ]
+[ 79  80 ]
+[ 48  71 ]
+[ 62  50 ]
+[ 92  109 ]
+[ 68  105 ]
+[ 42  115 ]
+[ 27  24 ]
+[ 13  86 ]
+[ 25  5 ]
+[ 90  12 ]
+[ 74  92 ]
+[ 113  54 ]
+[ 98  3 ]
+[ 20  33 ]
+[ 73  89 ]
+[ 17  19 ]
+[ 43  47 ]
+[ 88  65 ]
+[ 0  27 ]
+[ 11  28 ]
+[ 99  16 ]
+[ 116  93 ]
+[ 111  87 ]
+[ 53  49 ]
+[ 101  117 ]
+[ 102  34 ]
+[ 100  119 ]
+[ 5  118 ]
+[ 36  106 ]
+[ 55  56 ]
+[ 2  98 ]
+[ 40  59 ]
+[ 60  75 ]
+[ 109  22 ]
+[ 24  85 ]
+[ 38  68 ]
+[ 69  83 ]
+[ 21  18 ]
+[ 8  39 ]
+[ 18  53 ]
+[ 34  36 ]
+[ 26  63 ]
+[ 16  4 ]
+[ 76  26 ]
+[ 1  96 ]
+[ 65  91 ]
+[ 19  21 ]
+[ 86  46 ]
+[ 39  64 ]
+[ 81  61 ]
+[ 114  32 ]
+[ 77  10 ]
+[ 67  60 ]
+[ 52  52 ]
+[ 115  9 ]
+[ 46  103 ]
+[ 45  114 ]
+[ 14  23 ]
+[ 119  17 ]
+[ 72  58 ]
+[ 110  41 ]
+[ 94  94 ]
+[ 85  55 ]
+[ 12  51 ]
+[ 107  97 ]
+[ 104  107 ]
+[ 89  20 ]
+[ 118  8 ]
+[ 63  44 ]
+[ 54  88 ]
+[ 75  42 ]
+[ 10  14 ]
+[ 47  48 ]
+[ 57  95 ]
+[ 30  111 ]
+[ 108  31 ]
+[ 31  73 ]
+[ 32  30 ]
+[ 4  15 ]
+[ 56  11 ]
+[ 117  99 ]
+[ 51  13 ]
+[ 112  37 ]
+[ 105  113 ]
+[ 33  101 ]
+[ 97  104 ]
+[ 83  102 ]
+[ 71  1 ]
+[ 103  108 ]
+[ 28  110 ]
+[ 61  70 ]
+[ 23  100 ]
+[ 95  62 ]
+[ 44  116 ]
+[ 82  6 ]
+[ 91  38 ]
+[ 78  29 ]
+[ 84  45 ]
+[ 29  76 ]
+[ 58  35 ]
+[ 80  74 ]
+[ 22  67 ]
+[ 41  72 ]
+
+Matriz distribuida creada en 0.0003 segundos
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+2
+87 + 57 = 144
+3 + 25 = 28
+93 + 78 = 171
+9 + 7 = 16
+6 + 112 = 118
+37 + 77 = 114
+7 + 69 = 76
+50 + 43 = 93
+49 + 2 = 51
+59 + 66 = 125
+66 + 82 = 148
+96 + 81 = 177
+106 + 40 = 146
+64 + 0 = 64
+15 + 84 = 99
+35 + 90 = 125
+70 + 79 = 149
+79 + 80 = 159
+48 + 71 = 119
+62 + 50 = 112
+92 + 109 = 201
+68 + 105 = 173
+42 + 115 = 157
+27 + 24 = 51
+13 + 86 = 99
+25 + 5 = 30
+90 + 12 = 102
+74 + 92 = 166
+113 + 54 = 167
+98 + 3 = 101
+20 + 33 = 53
+73 + 89 = 162
+17 + 19 = 36
+43 + 47 = 90
+88 + 65 = 153
+0 + 27 = 27
+11 + 28 = 39
+99 + 16 = 115
+116 + 93 = 209
+111 + 87 = 198
+53 + 49 = 102
+101 + 117 = 218
+102 + 34 = 136
+100 + 119 = 219
+5 + 118 = 123
+36 + 106 = 142
+55 + 56 = 111
+2 + 98 = 100
+40 + 59 = 99
+60 + 75 = 135
+109 + 22 = 131
+24 + 85 = 109
+38 + 68 = 106
+69 + 83 = 152
+21 + 18 = 39
+8 + 39 = 47
+18 + 53 = 71
+34 + 36 = 70
+26 + 63 = 89
+16 + 4 = 20
+76 + 26 = 102
+1 + 96 = 97
+65 + 91 = 156
+19 + 21 = 40
+86 + 46 = 132
+39 + 64 = 103
+81 + 61 = 142
+114 + 32 = 146
+77 + 10 = 87
+67 + 60 = 127
+52 + 52 = 104
+115 + 9 = 124
+46 + 103 = 149
+45 + 114 = 159
+14 + 23 = 37
+119 + 17 = 136
+72 + 58 = 130
+110 + 41 = 151
+94 + 94 = 188
+85 + 55 = 140
+12 + 51 = 63
+107 + 97 = 204
+104 + 107 = 211
+89 + 20 = 109
+118 + 8 = 126
+63 + 44 = 107
+54 + 88 = 142
+75 + 42 = 117
+10 + 14 = 24
+47 + 48 = 95
+57 + 95 = 152
+30 + 111 = 141
+108 + 31 = 139
+31 + 73 = 104
+32 + 30 = 62
+4 + 15 = 19
+56 + 11 = 67
+117 + 99 = 216
+51 + 13 = 64
+112 + 37 = 149
+105 + 113 = 218
+33 + 101 = 134
+97 + 104 = 201
+83 + 102 = 185
+71 + 1 = 72
+103 + 108 = 211
+28 + 110 = 138
+61 + 70 = 131
+23 + 100 = 123
+95 + 62 = 157
+44 + 116 = 160
+82 + 6 = 88
+91 + 38 = 129
+78 + 29 = 107
+84 + 45 = 129
+29 + 76 = 105
+58 + 35 = 93
+80 + 74 = 154
+22 + 67 = 89
+41 + 72 = 113
+
+Matrices distribuidas sumadas en 0.0001 segundos
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+3
+87 - 57 = 30
+3 - 25 = -22
+93 - 78 = 15
+9 - 7 = 2
+6 - 112 = -106
+37 - 77 = -40
+7 - 69 = -62
+50 - 43 = 7
+49 - 2 = 47
+59 - 66 = -7
+66 - 82 = -16
+96 - 81 = 15
+106 - 40 = 66
+64 - 0 = 64
+15 - 84 = -69
+35 - 90 = -55
+70 - 79 = -9
+79 - 80 = -1
+48 - 71 = -23
+62 - 50 = 12
+92 - 109 = -17
+68 - 105 = -37
+42 - 115 = -73
+27 - 24 = 3
+13 - 86 = -73
+25 - 5 = 20
+90 - 12 = 78
+74 - 92 = -18
+113 - 54 = 59
+98 - 3 = 95
+20 - 33 = -13
+73 - 89 = -16
+17 - 19 = -2
+43 - 47 = -4
+88 - 65 = 23
+0 - 27 = -27
+11 - 28 = -17
+99 - 16 = 83
+116 - 93 = 23
+111 - 87 = 24
+53 - 49 = 4
+101 - 117 = -16
+102 - 34 = 68
+100 - 119 = -19
+5 - 118 = -113
+36 - 106 = -70
+55 - 56 = -1
+2 - 98 = -96
+40 - 59 = -19
+60 - 75 = -15
+109 - 22 = 87
+24 - 85 = -61
+38 - 68 = -30
+69 - 83 = -14
+21 - 18 = 3
+8 - 39 = -31
+18 - 53 = -35
+34 - 36 = -2
+26 - 63 = -37
+16 - 4 = 12
+76 - 26 = 50
+1 - 96 = -95
+65 - 91 = -26
+19 - 21 = -2
+86 - 46 = 40
+39 - 64 = -25
+81 - 61 = 20
+114 - 32 = 82
+77 - 10 = 67
+67 - 60 = 7
+52 - 52 = 0
+115 - 9 = 106
+46 - 103 = -57
+45 - 114 = -69
+14 - 23 = -9
+119 - 17 = 102
+72 - 58 = 14
+110 - 41 = 69
+94 - 94 = 0
+85 - 55 = 30
+12 - 51 = -39
+107 - 97 = 10
+104 - 107 = -3
+89 - 20 = 69
+118 - 8 = 110
+63 - 44 = 19
+54 - 88 = -34
+75 - 42 = 33
+10 - 14 = -4
+47 - 48 = -1
+57 - 95 = -38
+30 - 111 = -81
+108 - 31 = 77
+31 - 73 = -42
+32 - 30 = 2
+4 - 15 = -11
+56 - 11 = 45
+117 - 99 = 18
+51 - 13 = 38
+112 - 37 = 75
+105 - 113 = -8
+33 - 101 = -68
+97 - 104 = -7
+83 - 102 = -19
+71 - 1 = 70
+103 - 108 = -5
+28 - 110 = -82
+61 - 70 = -9
+23 - 100 = -77
+95 - 62 = 33
+44 - 116 = -72
+82 - 6 = 76
+91 - 38 = 53
+78 - 29 = 49
+84 - 45 = 39
+29 - 76 = -47
+58 - 35 = 23
+80 - 74 = 6
+22 - 67 = -45
+41 - 72 = -31
+
+Matrices distribuidas restadas en 0.0001 segundos
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+4
+87 * 57 = 4959
+3 * 25 = 75
+93 * 78 = 7254
+9 * 7 = 63
+6 * 112 = 672
+37 * 77 = 2849
+7 * 69 = 483
+50 * 43 = 2150
+49 * 2 = 98
+59 * 66 = 3894
+66 * 82 = 5412
+96 * 81 = 7776
+106 * 40 = 4240
+64 * 0 = 0
+15 * 84 = 1260
+35 * 90 = 3150
+70 * 79 = 5530
+79 * 80 = 6320
+48 * 71 = 3408
+62 * 50 = 3100
+92 * 109 = 10028
+68 * 105 = 7140
+42 * 115 = 4830
+27 * 24 = 648
+13 * 86 = 1118
+25 * 5 = 125
+90 * 12 = 1080
+74 * 92 = 6808
+113 * 54 = 6102
+98 * 3 = 294
+20 * 33 = 660
+73 * 89 = 6497
+17 * 19 = 323
+43 * 47 = 2021
+88 * 65 = 5720
+0 * 27 = 0
+11 * 28 = 308
+99 * 16 = 1584
+116 * 93 = 10788
+111 * 87 = 9657
+53 * 49 = 2597
+101 * 117 = 11817
+102 * 34 = 3468
+100 * 119 = 11900
+5 * 118 = 590
+36 * 106 = 3816
+55 * 56 = 3080
+2 * 98 = 196
+40 * 59 = 2360
+60 * 75 = 4500
+109 * 22 = 2398
+24 * 85 = 2040
+38 * 68 = 2584
+69 * 83 = 5727
+21 * 18 = 378
+8 * 39 = 312
+18 * 53 = 954
+34 * 36 = 1224
+26 * 63 = 1638
+16 * 4 = 64
+76 * 26 = 1976
+1 * 96 = 96
+65 * 91 = 5915
+19 * 21 = 399
+86 * 46 = 3956
+39 * 64 = 2496
+81 * 61 = 4941
+114 * 32 = 3648
+77 * 10 = 770
+67 * 60 = 4020
+52 * 52 = 2704
+115 * 9 = 1035
+46 * 103 = 4738
+45 * 114 = 5130
+14 * 23 = 322
+119 * 17 = 2023
+72 * 58 = 4176
+110 * 41 = 4510
+94 * 94 = 8836
+85 * 55 = 4675
+12 * 51 = 612
+107 * 97 = 10379
+104 * 107 = 11128
+89 * 20 = 1780
+118 * 8 = 944
+63 * 44 = 2772
+54 * 88 = 4752
+75 * 42 = 3150
+10 * 14 = 140
+47 * 48 = 2256
+57 * 95 = 5415
+30 * 111 = 3330
+108 * 31 = 3348
+31 * 73 = 2263
+32 * 30 = 960
+4 * 15 = 60
+56 * 11 = 616
+117 * 99 = 11583
+51 * 13 = 663
+112 * 37 = 4144
+105 * 113 = 11865
+33 * 101 = 3333
+97 * 104 = 10088
+83 * 102 = 8466
+71 * 1 = 71
+103 * 108 = 11124
+28 * 110 = 3080
+61 * 70 = 4270
+23 * 100 = 2300
+95 * 62 = 5890
+44 * 116 = 5104
+82 * 6 = 492
+91 * 38 = 3458
+78 * 29 = 2262
+84 * 45 = 3780
+29 * 76 = 2204
+58 * 35 = 2030
+80 * 74 = 5920
+22 * 67 = 1474
+41 * 72 = 2952
+
+Matrices distribuidas multiplicadas en 0.0001 segundos
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+5
+matriz | matrizT
+  [87]  |   [41]
+  [3]  |   [22]
+  [93]  |   [80]
+  [9]  |   [58]
+  [6]  |   [29]
+  [37]  |   [84]
+  [7]  |   [78]
+  [50]  |   [91]
+  [49]  |   [82]
+  [59]  |   [44]
+  [66]  |   [95]
+  [96]  |   [23]
+  [106]  |   [61]
+  [64]  |   [28]
+  [15]  |   [103]
+  [35]  |   [71]
+  [70]  |   [83]
+  [79]  |   [97]
+  [48]  |   [33]
+  [62]  |   [105]
+  [92]  |   [112]
+  [68]  |   [51]
+  [42]  |   [117]
+  [27]  |   [56]
+  [13]  |   [4]
+  [25]  |   [32]
+  [90]  |   [31]
+  [74]  |   [108]
+  [113]  |   [30]
+  [98]  |   [57]
+  [20]  |   [47]
+  [73]  |   [10]
+  [17]  |   [75]
+  [43]  |   [54]
+  [88]  |   [63]
+  [0]  |   [118]
+  [11]  |   [89]
+  [99]  |   [104]
+  [116]  |   [107]
+  [111]  |   [12]
+  [53]  |   [85]
+  [101]  |   [94]
+  [102]  |   [110]
+  [100]  |   [72]
+  [5]  |   [119]
+  [36]  |   [14]
+  [55]  |   [45]
+  [2]  |   [46]
+  [40]  |   [115]
+  [60]  |   [52]
+  [109]  |   [67]
+  [24]  |   [77]
+  [38]  |   [114]
+  [69]  |   [81]
+  [21]  |   [39]
+  [8]  |   [86]
+  [18]  |   [19]
+  [34]  |   [65]
+  [26]  |   [1]
+  [16]  |   [76]
+  [76]  |   [16]
+  [1]  |   [26]
+  [65]  |   [34]
+  [19]  |   [18]
+  [86]  |   [8]
+  [39]  |   [21]
+  [81]  |   [69]
+  [114]  |   [38]
+  [77]  |   [24]
+  [67]  |   [109]
+  [52]  |   [60]
+  [115]  |   [40]
+  [46]  |   [2]
+  [45]  |   [55]
+  [14]  |   [36]
+  [119]  |   [5]
+  [72]  |   [100]
+  [110]  |   [102]
+  [94]  |   [101]
+  [85]  |   [53]
+  [12]  |   [111]
+  [107]  |   [116]
+  [104]  |   [99]
+  [89]  |   [11]
+  [118]  |   [0]
+  [63]  |   [88]
+  [54]  |   [43]
+  [75]  |   [17]
+  [10]  |   [73]
+  [47]  |   [20]
+  [57]  |   [98]
+  [30]  |   [113]
+  [108]  |   [74]
+  [31]  |   [90]
+  [32]  |   [25]
+  [4]  |   [13]
+  [56]  |   [27]
+  [117]  |   [42]
+  [51]  |   [68]
+  [112]  |   [92]
+  [105]  |   [62]
+  [33]  |   [48]
+  [97]  |   [79]
+  [83]  |   [70]
+  [71]  |   [35]
+  [103]  |   [15]
+  [28]  |   [64]
+  [61]  |   [106]
+  [23]  |   [96]
+  [95]  |   [66]
+  [44]  |   [59]
+  [82]  |   [49]
+  [91]  |   [50]
+  [78]  |   [7]
+  [84]  |   [37]
+  [29]  |   [6]
+  [58]  |   [9]
+  [80]  |   [93]
+  [22]  |   [3]
+  [41]  |   [87]
+
+Matriz distribuida traspuesta en 0.0001 segundos
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+[1] Crear matriz distribuida aleatoria
+[2] Sumar matrices aleatorias
+[3] Restar matrices aleatorias
+[4] Multiplicar matrices aleatorias
+[5] Transponer matriz
+[0] Salir
+0
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+
+Covarrubias Olivares Jose Refugio
+Gomez Jauregui Johana Guadalupe
+Gomez Ramirez Ikaro Adrian
+Hernandez Cristobal Alan
+
+

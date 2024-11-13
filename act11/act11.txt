@@ -1,0 +1,168 @@
+// Covarrubias Olivares Jose Refugio
+// Gomez Jauregui Johana Guadalupe
+// Gomez Ramirez Ikaro Adrian
+// Hernandez Cristobal Alan
+
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <ctime>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <cmath>
+#include <mpi.h>
+#include <random>
+
+using namespace std;
+
+class FuerzaBruta {
+private:
+    string cadenaBuscada;
+
+public:
+    void generarCadena(int longitudCadena) {
+        const string caracteres =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz"
+            "!@#$%^&*";
+
+        const int totalCaracteres = caracteres.size();
+        cadenaBuscada.resize(longitudCadena);
+
+        // Obtener el rango del proceso
+        int rank;
+        MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+        // Semilla única para cada proceso
+        unsigned int seed = static_cast<unsigned int>(time(0)) + rank;
+        mt19937 rng(seed); // Generador de números aleatorios
+
+        for (int i = 0; i < longitudCadena; ++i) {
+            uniform_int_distribution<int> dist(0, totalCaracteres - 1);
+            cadenaBuscada[i] = caracteres[dist(rng)];
+        }
+    }
+
+    void buscarCadena(int longitudCadena, bool& cadenaEncontrada, string& cadenaEncontradaPor) {
+        const string caracteres =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz"
+            "!@#$%^&*";
+
+        const int totalCaracteres = caracteres.size();
+        long long totalCombinaciones = pow(totalCaracteres, longitudCadena);
+        int rank;
+        MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+        long long combinacionesPorProceso = totalCombinaciones / 4;
+        long long inicio = rank * combinacionesPorProceso;
+        long long fin = (rank == 3) ? totalCombinaciones : inicio + combinacionesPorProceso;
+        string intento(longitudCadena, ' ');
+        long long nintento = 0;
+
+        for (long long i = inicio; i < fin; ++i) {
+            // Generar la cadena a partir del índice actual
+            long long temp = i;
+            for (int j = longitudCadena - 1; j >= 0; --j) {
+                intento[j] = caracteres[temp % totalCaracteres];
+                temp /= totalCaracteres;
+            }
+            nintento++;
+
+            // Verificar si coincide con la cadena buscada
+            if (intento == cadenaBuscada) {
+                cadenaEncontrada = true;
+                cadenaEncontradaPor = "Cadena encontrada: '" + intento + "' por el proceso " + to_string(rank) + " en el intento: " + to_string(nintento);
+                break;
+            }
+        }
+    }
+
+    void setCadena(const string& cadena) {
+        cadenaBuscada = cadena;
+    }
+
+    string getCadena() const {
+        return cadenaBuscada;
+    }
+};
+
+int main(int argc, char* argv[]) {
+    MPI_Init(&argc, &argv);
+
+    FuerzaBruta m;
+    const int longitudCadena = 5;
+
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    // Solo el proceso 0 genera la cadena
+    if (rank == 0) {
+        cout << "Integrantes del equipo:\n";
+        cout << "1. Jose Refugio Covarrubias Olivares\n";
+        cout << "2. Alan Hernandez Cristobal\n";
+        cout << "3. Ikaro Adrian Gomez Ramirez\n";
+        cout << "4. Johana Guadalupe Gomez Jauregui\n\n\n";
+
+        m.generarCadena(longitudCadena);
+        cout << "Cadena generada por el proceso 0: " << m.getCadena() << endl;
+    }
+
+    // Enviar la cadena generada a todos los procesos
+    char cadenaRecibida[longitudCadena + 1];
+    if (rank == 0) {
+        strncpy(cadenaRecibida, m.getCadena().c_str(), longitudCadena + 1);
+    }
+    MPI_Bcast(cadenaRecibida, longitudCadena + 1, MPI_CHAR, 0, MPI_COMM_WORLD);
+
+    m.setCadena(cadenaRecibida);
+
+    double start_par = MPI_Wtime();
+
+    // Solo el proceso 0 imprime el mensaje de búsqueda
+    if (rank == 0) {
+        cout << "Buscando cadena...\n\n";
+    }
+
+    bool cadenaEncontrada = false;
+    string cadenaEncontradaPor;
+
+    // Cada proceso busca la cadena
+    m.buscarCadena(longitudCadena, cadenaEncontrada, cadenaEncontradaPor);
+
+    // Comunicar si se encontró la cadena
+    MPI_Bcast(&cadenaEncontrada, 1, MPI_C_BOOL, 0, MPI_COMM_WORLD);
+    if (cadenaEncontrada) {
+        char mensaje[256]; // Asegúrate de que el tamaño sea suficiente
+        strncpy(mensaje, cadenaEncontradaPor.c_str(), sizeof(mensaje));
+        MPI_Bcast(mensaje, sizeof(mensaje), MPI_CHAR, 0, MPI_COMM_WORLD);
+        if (rank != 0) {
+            cout << mensaje << endl; // Imprimir el mensaje en otros procesos
+        }
+    }
+
+    // Solo el proceso que encontró la cadena imprime el resultado
+    if (rank == 0 && cadenaEncontrada) {
+        cout << cadenaEncontradaPor << endl;
+    }
+
+    // Detener tiempo solo en el proceso 0
+    double end_par = MPI_Wtime();
+    if (rank == 0) {
+        printf("\n\nTiempo en buscar la cadena: %.2f \n\n\n", end_par - start_par);
+    }
+
+    if (rank == 0) {
+        cout << "Integrantes del equipo:\n";
+        cout << "1. Jose Refugio Covarrubias Olivares\n";
+        cout << "2. Alan Hernandez Cristobal\n";
+        cout << "3. Ikaro Adrian Gomez Ramirez\n";
+        cout << "4. Johana Guadalupe Gomez Jauregui\n";
+    }
+
+    MPI_Finalize();
+    return 0;
+}

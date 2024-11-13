@@ -1,0 +1,40 @@
+mpiexec -n 8 programpi.exe
+Iniciando sistema bancario con MPI
+Proceso 0 deposito 96. Saldo actual: 96
+Proceso 0 intento retirar 24. Saldo actual: 72
+Proceso 0 deposito 67. Saldo actual: 139
+Proceso 0 intento retirar 81. Saldo actual: 58
+Tiempo total de ejecucion: 9.6e-05 segundos
+Saldo insuficiente para retirar 50 unidades.
+Proceso 6 intento retirar 50. Saldo actual: 0
+Proceso 6 deposito 64. Saldo actual: 64
+Proceso 6 consulto el saldo. Saldo actual: 64
+Proceso 6 consulto el saldo. Saldo actual: 64
+Proceso 3 deposito 73. Saldo actual: 73
+Saldo insuficiente para retirar 78 unidades.
+Proceso 3 intento retirar 78. Saldo actual: 73
+Proceso 3 deposito 79. Saldo actual: 152
+Proceso 3 deposito 99. Saldo actual: 251
+Proceso 2 deposito 25. Saldo actual: 25
+Proceso 2 deposito 15. Saldo actual: 40
+Proceso 2 consulto el saldo. Saldo actual: 40
+Proceso 2 consulto el saldo. Saldo actual: 40
+Saldo insuficiente para retirar 31 unidades.
+Proceso 7 intento retirar 31. Saldo actual: 0
+Proceso 7 consulto el saldo. Saldo actual: 0
+Proceso 7 deposito 86. Saldo actual: 86
+Proceso 7 deposito 90. Saldo actual: 176
+Saldo insuficiente para retirar 53 unidades.
+Proceso 4 intento retirar 53. Saldo actual: 0
+Proceso 4 deposito 74. Saldo actual: 74
+Proceso 4 deposito 6. Saldo actual: 80
+Proceso 4 consulto el saldo. Saldo actual: 80
+Saldo insuficiente para retirar 2 unidades.
+Proceso 5 intento retirar 2. Saldo actual: 0
+Proceso 5 deposito 69. Saldo actual: 69
+Proceso 5 consulto el saldo. Saldo actual: 69
+Proceso 5 deposito 45. Saldo actual: 114
+Proceso 1 deposito 76. Saldo actual: 76
+Proceso 1 intento retirar 20. Saldo actual: 56
+Proceso 1 deposito 94. Saldo actual: 150
+Proceso 1 deposito 54. Saldo actual: 204

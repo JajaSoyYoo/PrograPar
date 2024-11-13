@@ -1,0 +1,177 @@
+//Covarrubias Olivares Jose Refugio
+//Gomez Jauregui Johana Guadalupe
+//Gomez Ramirez Ikaro Adrian
+//Hernandez Cristobal Alan
+
+#include <iostream>
+#include <omp.h>
+#include <stdio.h>
+#include <vector>
+
+using namespace std;
+
+
+class OperacionesMatriciales
+{
+private:
+    int m1[120], m2[120], res[120];
+    int resultado = 0;
+    float promedio = 0;
+
+    vector<int> numeros;
+
+public:
+
+    //algoritmo de barajado
+    void barajarVector(vector<int>& m)
+    {
+        for (int i = m.size() - 1; i > 0; i--)
+        {
+            int j = rand() % (i + 1);
+            swap(m[i], m[j]);
+        }
+    }
+
+    void crearArreglo()
+    {
+        numeros.resize(1000, 0);
+        #pragma omp parallel for schedule(static, 100)
+        for(int cont = 0; cont < 1000; cont ++)
+        {
+            numeros[cont] = cont + 1;
+
+        }
+        barajarVector(numeros);
+
+        for(int i = 0 ; i <1000; i++)
+            cout<<"[ "<<numeros[i]<<" ]"<<endl;
+    }
+
+    void sumarVector()
+    {
+        resultado = 0;
+        #pragma omp parallel for reduction(+:resultado)
+        for(int i = 0; i < 1000; i ++)
+        {
+
+            resultado = numeros[i];
+            printf("%i+",numeros[i]);
+
+        }
+
+        printf("\n\nSuma de todos los elementos del vector = %i\n",resultado);
+
+    }
+
+    void promedioVector()
+    {
+        resultado = 0;
+        #pragma omp parallel for reduction(+:resultado)
+        for(int i = 0; i < 1000; i ++)
+        {
+
+            resultado += numeros[i];
+
+        }
+        promedio = resultado/1000;
+        printf("\n\nPromedio de todos los elementos del vector = %.2f\n",promedio);
+
+    }
+
+    void maximo()
+    {
+        resultado = 0;
+        #pragma omp parallel for reduction(max:resultado)
+        for(int i = 0; i < 1000; i ++)
+        {
+            if (numeros[i] > resultado)
+            {
+                resultado = numeros[i];
+            }
+
+        }
+        printf("\n\nMaximo de todos los elementos del vector = %i\n",resultado);
+    }
+
+    void minimo()
+    {
+        resultado = 1000;
+        #pragma omp parallel for reduction(min:resultado)
+        for(int i = 0; i < 1000; i ++)
+        {
+            if (numeros[i] < resultado)
+            {
+                resultado = numeros[i];
+            }
+
+        }
+        printf("\n\nMinimo de todos los elementos del vector = %i\n",resultado);
+    }
+};
+
+int main()
+{
+    cout<<"//Covarrubias Olivares Jose Refugio\n//Gomez Jauregui Johana Guadalupe\n//Gomez Ramirez Ikaro Adrian\n//Hernandez Cristobal Alan\n"<<endl;
+
+    OperacionesMatriciales m;
+
+    int op;
+
+    do
+    {
+        cout<<"[1] Crear vector aleatorio "<<endl;
+        cout<<"[2] Sumar contenido de vector "<<endl;
+        cout<<"[3] Promedio de vector "<<endl;
+        cout<<"[4] Maximo de vector"<<endl;
+        cout<<"[5] Minimo de vector"<<endl;
+        cout<<"[0] Salir "<<endl;
+        cin>>op;
+
+        if(op == 1)
+        {
+            double inicial = omp_get_wtime();
+            m.crearArreglo();
+            double fin = omp_get_wtime();
+            double dif = fin - inicial;
+            printf("\nMatriz distribuida craeada en %.4f segundos\n\n",dif);
+        }
+        else if(op == 2)
+        {
+            double inicial = omp_get_wtime();
+            m.sumarVector();
+            double fin = omp_get_wtime();
+            double dif = fin - inicial;
+            printf("\nMatrices distribuidas sumadas en %.4f segundos\n\n",dif);
+        }
+        else if(op == 3)
+        {
+            double inicial = omp_get_wtime();
+            m.promedioVector();
+            double fin = omp_get_wtime();
+            double dif = fin - inicial;
+            printf("\nMatrices distribuidas restadas en %.4f segundos\n\n",dif);
+        }
+        else if(op == 4)
+        {
+            double inicial = omp_get_wtime();
+            m.maximo();
+            double fin = omp_get_wtime();
+            double dif = fin - inicial;
+            printf("\nMatrices distribuidas multiplicadas en %.4f segundos\n\n",dif);
+        }
+        else if(op == 5)
+        {
+            double inicial = omp_get_wtime();
+            m.minimo();
+            double fin = omp_get_wtime();
+            double dif = fin - inicial;
+            printf("\nMatriz distribuida trasnpuesta en %.4f segundos\n\n",dif);
+        }
+
+    }
+    while(op != 0);
+
+    cout<<"//Covarrubias Olivares Jose Refugio\n//Gomez Jauregui Johana Guadalupe\n//Gomez Ramirez Ikaro Adrian\n//Hernandez Cristobal Alan\n"<<endl;
+
+    return 0;
+}

@@ -1,0 +1,184 @@
+//Covarrubias Olivares Jose Refugio
+//Gomez Jauregui Johana Guadalupe
+//Gomez Ramirez Ikaro Adrian
+//Hernandez Cristobal Alan
+
+#include <iostream>
+#include <mpi.h>
+
+using namespace std;
+
+class OperacionesMatriciales
+{
+private:
+    int m1[120] = {0}, m2[120] = {0}, res[120] = {0}; // Se igualan a 0
+
+public:
+    // Algoritmo de barajado
+    void barajarMatriz(int m[]) {
+        for (int i = 120 - 1; i > 0; i--) {
+            int j = rand() % (i + 1);
+            swap(m[i], m[j]);
+        }
+    }
+
+    void crearMatrizAleatoriaMPI(int rank) {
+        if (rank == 0) {
+            // Proceso 0 inicializa m1 y m2
+            for (int cont = 0; cont < 120; cont++) {
+                m1[cont] = cont; // Se llena secuencial m1
+            }
+            barajarMatriz(m1); // Barajar m1
+
+            // Inicializar m2 en el proceso 0
+            for (int cont = 0; cont < 120; cont++) {
+                m2[cont] = cont; //Se llena secuencial m2
+            }
+            barajarMatriz(m2); // Barajar m2
+        }
+
+        // Distribuir m1 y m2 a todos los procesos
+        MPI_Bcast(m1, 120, MPI_INT, 0, MPI_COMM_WORLD);
+        MPI_Bcast(m2, 120, MPI_INT, 0, MPI_COMM_WORLD);
+
+        // Mostrar las matrices en el proceso 0
+        if (rank == 0) {
+            for (int i = 0; i < 120; i++) {
+                cout << "[ " << m1[i] << "  " << m2[i] << " ]" << endl;
+            }
+        }
+    }
+
+    void sumarMatricesMPI(int rank) {
+        // Sumar las matrices localmente
+        for (int i = 0; i < 120; i++) {
+            res[i] = m1[i] + m2[i];
+        }
+
+        // Solo el proceso 0 imprime los resultados
+        if (rank == 0) {
+            for (int i = 0; i < 120; i++) {
+                printf("%i + %i = %i\n", m1[i], m2[i], res[i]);
+            }
+        }
+    }
+
+    void restarMatricesMPI(int rank) {
+        for (int i = 0; i < 120; i++) {
+            res[i] = m1[i] - m2[i];
+        }
+
+        if (rank == 0) {
+            for (int i = 0; i < 120; i++) {
+                printf("%i - %i = %i\n", m1[i], m2[i], res[i]);
+            }
+        }
+    }
+
+    void multiplicarMatricesMPI(int rank) {
+        for (int i = 0; i < 120; i++) {
+            res[i] = m1[i] * m2[i];
+        }
+
+        if (rank == 0) {
+            for (int i = 0; i < 120; i++) {
+                printf("%i * %i = %i\n", m1[i], m2[i], res[i]);
+            }
+        }
+    }
+
+    void transponerMatrizMPI(int rank) {
+        for (int i = 0; i < 120; i++) {
+            res[120 - i - 1] = m1[i]; // Inversión de índices
+        }
+        if (rank == 0) {
+            printf("matriz | matrizT \n");
+            for (int i = 0; i < 120; i++) {
+                printf("  [%i]  |   [%i] \n", m1[i], res[i]);
+            }
+        }
+    }
+};
+
+int main(int argc, char** argv) {
+    MPI_Init(&argc, &argv);
+
+    int rank, size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+    OperacionesMatriciales m;
+
+    int op;
+
+    do {
+        // Solo el proceso 0 muestra el menú
+        if (rank == 0) {
+            cout << "Covarrubias Olivares Jose Refugio \nGomez Jauregui Johana Guadalupe \nGomez Ramirez Ikaro Adrian \nHernandez Cristobal Alan\n\n" << endl;
+
+            cout << "[1] Crear matriz distribuida aleatoria " << endl;
+            cout << "[2] Sumar matrices aleatorias " << endl;
+            cout << "[3] Restar matrices aleatorias " << endl;
+            cout << "[4] Multiplicar matrices aleatorias" << endl;
+            cout << "[5] Transponer matriz" << endl;
+            cout << "[0] Salir " << endl;
+            cin >> op;
+
+            // Broadcast the operation to all processes
+            MPI_Bcast(&op, 1, MPI_INT, 0, MPI_COMM_WORLD);
+        } else {
+            // Recibir la operación en otros procesos
+            MPI_Bcast(&op, 1, MPI_INT, 0, MPI_COMM_WORLD);
+        }
+
+        double inicial, fin, dif;
+
+        if (op == 1) {
+            inicial = MPI_Wtime();
+            m.crearMatrizAleatoriaMPI(rank);
+            fin = MPI_Wtime();
+            if (rank == 0) {
+                dif = fin - inicial;
+                printf("\nMatriz distribuida creada en %.4f segundos\n\n", dif);
+            }
+        } else if (op == 2) {
+            inicial = MPI_Wtime();
+            m.sumarMatricesMPI(rank);
+            fin = MPI_Wtime();
+            if (rank == 0) {
+                dif = fin - inicial;
+                printf("\nMatrices distribuidas sumadas en %.4f segundos\n\n", dif);
+            }
+        } else if (op == 3) {
+            inicial = MPI_Wtime();
+            m.restarMatricesMPI(rank);
+            fin = MPI_Wtime();
+            if (rank == 0) {
+                dif = fin - inicial;
+                printf("\nMatrices distribuidas restadas en %.4f segundos\n\n", dif);
+            }
+        } else if (op == 4) {
+            inicial = MPI_Wtime();
+            m.multiplicarMatricesMPI(rank);
+            fin = MPI_Wtime();
+            if (rank == 0) {
+                dif = fin - inicial;
+                printf("\nMatrices distribuidas multiplicadas en %.4f segundos\n\n", dif);
+            }
+        } else if (op == 5) {
+            inicial = MPI_Wtime();
+            m.transponerMatrizMPI(rank);
+            fin = MPI_Wtime();
+            if (rank == 0) {
+                dif = fin - inicial;
+                printf("\nMatriz distribuida traspuesta en %.4f segundos\n\n", dif);
+            }
+        }
+
+    } while (op != 0);
+
+    MPI_Finalize();
+
+    cout << "Covarrubias Olivares Jose Refugio \nGomez Jauregui Johana Guadalupe \nGomez Ramirez Ikaro Adrian \nHernandez Cristobal Alan\n\n" << endl;
+    return 0;
+}

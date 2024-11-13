@@ -1,0 +1,29 @@
+//Covarrubias Olivares Jose Refugio
+//Gomez Jauregui Johana Guadalupe
+//Gomez Ramirez Ikaro Adrian
+//Hernandez Cristobal Alan
+
+Hilo 1 consulto el saldo. Saldo actual: 1000
+Hilo 0 retiro 454. Saldo actual: 546
+Hilo 2 consulto el saldo. Saldo actual: 546
+Hilo 3 consulto el saldo. Saldo actual: 546
+Hilo 1 retiro 1. Saldo actual: 545
+Hilo 0 realizo un deposito de 339. Saldo actual: 884
+Hilo 2 retiro 1. Saldo actual: 883
+Hilo 3 retiro 1. Saldo actual: 882
+Hilo 1 consulto el saldo. Saldo actual: 882
+Hilo 0 consulto el saldo. Saldo actual: 882
+Hilo 2 consulto el saldo. Saldo actual: 882
+Hilo 3 consulto el saldo. Saldo actual: 882
+Hilo 1 realizo un deposito de 359. Saldo actual: 1241
+Hilo 0 retiro 113. Saldo actual: 1128
+Hilo 2 realizo un deposito de 359. Saldo actual: 1487
+Hilo 3 realizo un deposito de 359. Saldo actual: 1846
+Saldo final en la cuenta: 1846
+Tiempo total de ejecucion: 0 segundos.
+
+
+//Covarrubias Olivares Jose Refugio
+//Gomez Jauregui Johana Guadalupe
+//Gomez Ramirez Ikaro Adrian
+//Hernandez Cristobal Alan

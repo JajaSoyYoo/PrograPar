@@ -1,0 +1,64 @@
+//Covarrubias Olivares Jose Refugio
+//Gomez Jauregui Johana Guadalupe
+//Gomez Ramirez Ikaro Adrian
+//Hernandez Cristobal Alan
+
+#include <iostream>
+#include <stdio.h>
+#include <curand_kernel.h>
+
+#define N 20 // Número de elementos
+
+// Kernel para generar números aleatorios únicos
+__global__ void kernel_function(int* arreglo, int n) {
+    int hilo = blockIdx.x * blockDim.x + threadIdx.x; // ID del hilo
+    if (hilo < n) {
+        // Inicializar el generador de números aleatorios
+        curandState state;
+        curand_init(hilo, 0, 0, &state);
+
+        // Generar un número aleatorio
+        arreglo[hilo] = curand(&state) % 101; // Números entre 0 y 100
+
+        // Proporción de progreso
+        int per = (hilo + 1) * 100.0 / n;
+        printf("Soy el hilo %i y llevo %i%%\n", hilo, per);
+    }
+}
+
+int main() {
+    printf("Covarrubias Olivares Jose Refugio \nGomez Jauregui Johana Guadalupe \nGomez Ramirez Ikaro Adrian \nHernandez Cristobal Alan\n\n");
+
+    int* d_arreglo; // Puntero en el dispositivo
+    size_t size = N * sizeof(int);
+
+    // Asignar memoria en el dispositivo
+    cudaMalloc((void**)&d_arreglo, size);
+
+    // Configuración de bloques y hilos
+    int threadsPerBlock = 16;
+    int numBlocks = (N + threadsPerBlock - 1) / threadsPerBlock;
+
+    // Lanzar el kernel
+    kernel_function << <numBlocks, threadsPerBlock >> > (d_arreglo, N);
+
+    // Sincronizar para asegurarse de que todos los hilos han terminado
+    cudaDeviceSynchronize();
+
+    // Copiar resultados de vuelta a la CPU
+    int h_arreglo[N]; // Arreglo en el host
+    cudaMemcpy(h_arreglo, d_arreglo, size, cudaMemcpyDeviceToHost);
+
+    // Liberar memoria en el dispositivo
+    cudaFree(d_arreglo);
+
+    // Mostrar resultados
+    printf("Numeros generados:\n");
+    for (int i = 0; i < N; i++) {
+        printf("%d ", h_arreglo[i]);
+    }
+    printf("\n");
+
+    printf("Covarrubias Olivares Jose Refugio \nGomez Jauregui Johana Guadalupe \nGomez Ramirez Ikaro Adrian \nHernandez Cristobal Alan\n\n");
+    return 0;
+}

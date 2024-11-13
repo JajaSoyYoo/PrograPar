@@ -1,0 +1,21 @@
+mpiexec -n 4 programpi.exe
+Integrantes del equipo:
+1. Jose Refugio Covarrubias Olivares
+2. Alan Hernandez Cristobal
+3. Ikaro Adrian Gomez Ramirez
+4. Johana Guadalupe Gomez Jauregui
+
+
+Cadena generada por el proceso 0: YO5qP
+Buscando cadena...
+
+
+
+Tiempo en buscar la cadena: 24.87
+
+
+Integrantes del equipo:
+1. Jose Refugio Covarrubias Olivares
+2. Alan Hernandez Cristobal
+3. Ikaro Adrian Gomez Ramirez
+4. Johana Guadalupe Gomez Jauregui

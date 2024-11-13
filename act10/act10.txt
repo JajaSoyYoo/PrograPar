@@ -1,0 +1,98 @@
+#include <mpi.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+class Banco {
+private:
+    int saldo;
+    MPI_Win win;
+
+public:
+    Banco() : saldo(0) {
+        MPI_Win_create(&saldo, sizeof(int), sizeof(int), MPI_INFO_NULL, MPI_COMM_WORLD, &win);
+    }
+
+    void liberarVentana() {
+        MPI_Win_free(&win);
+    }
+
+    void depositar(int cantidad) {
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, 0, 0, win);
+        saldo += cantidad;
+        MPI_Win_unlock(0, win);
+    }
+
+    void retirar(int cantidad) {
+        MPI_Win_lock(MPI_LOCK_EXCLUSIVE, 0, 0, win);
+        if (saldo >= cantidad) {
+            saldo -= cantidad;
+        } else {
+            cout << "Saldo insuficiente para retirar " << cantidad << " unidades." << endl;
+        }
+        MPI_Win_unlock(0, win);
+    }
+
+    int consultarSaldo() {
+        int saldo_local;
+        MPI_Win_lock(MPI_LOCK_SHARED, 0, 0, win);
+        saldo_local = saldo;
+        MPI_Win_unlock(0, win);
+        return saldo_local;
+    }
+};
+
+int main(int argc, char* argv[]) {
+    MPI_Init(&argc, &argv);
+
+    int rank, size;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+    Banco banco;
+    int operacionesPorProceso = 4;
+    srand(time(0) + rank); // Semilla diferente para cada proceso
+
+    if (rank == 0) {
+        cout << "Iniciando sistema bancario con MPI" << endl;
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    double inicio = MPI_Wtime();
+
+    for (int i = 0; i < operacionesPorProceso; ++i) {
+        int operacion = rand() % 3; // 0: depositar, 1: retirar, 2: consultar saldo
+        int cantidad = (rand() % 100) + 1;
+
+        switch (operacion) {
+            case 0: // Depositar
+                banco.depositar(cantidad);
+                cout << "Proceso " << rank << " deposito " << cantidad << ". Saldo actual: " << banco.consultarSaldo() << endl;
+                break;
+
+            case 1: // Retirar
+                banco.retirar(cantidad);
+                cout << "Proceso " << rank << " intento retirar " << cantidad << ". Saldo actual: " << banco.consultarSaldo() << endl;
+                break;
+
+            case 2: // Consultar saldo
+                cout << "Proceso " << rank << " consulto el saldo. Saldo actual: " << banco.consultarSaldo() << endl;
+                break;
+        }
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    double fin = MPI_Wtime();
+
+    if (rank == 0) {
+        cout << "Tiempo total de ejecucion: " << (fin - inicio) << " segundos" << endl;
+    }
+
+    // Liberar MPI_Win antes de finalizar MPI
+    banco.liberarVentana();
+    MPI_Finalize();
+
+    return 0;
+}
